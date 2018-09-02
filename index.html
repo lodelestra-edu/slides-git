@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Vagrant</title>
+    <title>Git</title>
 
     <meta name="description" content="Git introduction course">
     <meta name="author" content="Loïc Delestra">
@@ -167,6 +167,290 @@
           
           <section data-markdown>
             <script type="text/template">
+              ### Recording Changes to the Repository
+              You’ll want to start making changes and committing snapshots of those changes into your repository each time the project reaches a state you want to record.  
+              Each file in your working directory can be in one of two states: 
+              - **Tracked** (suivi): Tracked files are files that were in the last snapshot; they can be unmodified, modified, or staged. In short, tracked files are files that Git knows about.
+              - **untracked** (non-suivi): Untracked files are everything else.
+              
+              When you first clone a repository, all of your files will be tracked and unmodified
+            </script>
+          </section>            
+        
+
+
+          <section data-markdown>
+            <script type="text/template">
+              <img src="img/basics_lifecycle.png">
+
+              The lifecycle of the status of your files.
+            </script>
+          </section>         
+
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Checking the Status of Your Files
+              **`git status`**  
+              ```
+              git status
+              # result ?  
+              echo "checking status" > README && git status
+              # result ?  
+              ```
+              Git won’t start including it in your commit snapshots until you explicitly tell it to do so. It does this so you don’t accidentally begin including generated binary files or other files that you did not mean to include.
+            </script>
+          </section>         
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Tracking New Files
+              **`git add <file or directory>`**
+              ```
+              git add README
+              ```
+            </script>
+          </section>         
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Staging Modified Files
+            </script>
+          </section>
+          
+
+
+          <section data-markdown>
+            <script type="text/template">
+              ### Ignoring Files
+            </script>
+          </section>
+          
+
+
+          <section data-markdown>
+            <script type="text/template">
+              ### Viewing Your Staged and Unstaged Changes
+            </script>
+          </section>
+          
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Committing Your Changes
+
+            </script>
+          </section>
+          
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Skipping the Staging Area
+            </script>
+          </section>
+          
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Removing Files
+            </script>
+          </section>
+          
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Moving Files
+            </script>
+          </section>
+          
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ## Viewing the Commit History
+            </script>
+          </section>
+          
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ## Undoing Things
+            </script>
+          </section>
+          
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Edit the last commit
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Unstaging a Staged File
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Unmodifying a Modified File
+            </script>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              # 3. Working with Remotes
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Showing Your Remotes
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Adding Remote Repositories
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Fetching and Pulling from Your Remotes
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Pushing to Your Remotes
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Inspecting a Remote
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Renaming and Removing Remotes
+            </script>
+          </section>
+        </section>
+
+
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              # 4. Git Branching
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ## Branches in a Nutshell
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Creating a New Branch
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Switching Branches
+            </script>
+          </section>
+
+          <section data-markdown>
+              <script type="text/template">
+                ### Branches Management
+                cf 3.3
+              </script>
+            </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+               # 5. Branching and Merging
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+            </script>
+          </section>
+
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              # 6. Remote Branches
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+            </script>
+          </section>
+
+          
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              # 7. Branching and Rebasing
+            </script>
+          </section>
+
+          
+          
+          <section data-markdown>
+            <script type="text/template">
             </script>
           </section>
           
@@ -184,22 +468,16 @@
           </section>
         </section>
 
-        <section>
-          <section data-markdown>
-            <script type="text/template">
-              # 3. 
-            </script>
-          </section>
 
         <section>
           <section data-markdown>
             <script type="text/template">
               ##Sources:
+              https://en.wikipedia.org/wiki/Git
               <br>
-              https://en.wikipedia.org/wiki/Vagrant_(software)
               <br>
+              https://git-scm.com/book/
               <br>
-              https://docs.vagrantup.com/v2/
             </script>
           </section>
         </section>
