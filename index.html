@@ -602,31 +602,79 @@
           <section data-markdown>
             <script type="text/template">
               ## Branches in a Nutshell
+
+              > Branching means you diverge from the main line of development and continue to do work without messing with that main line
+
             </script>
           </section>
 
-          
-          
-          <section data-markdown>
-            <script type="text/template">
-              ### Creating a New Branch
-            </script>
+          <section>
+            <h3>Commit and tree</h3>
+            <pre>
+              <code>
+                  $ git add README test.rb LICENSE
+                  $ git commit -m 'The initial commit of my project'
+              </code>
+            </pre>
+
+            <img src="img/commit-and-tree.png">
           </section>
 
-          
-          
-          <section data-markdown>
-            <script type="text/template">
-              ### Switching Branches
-            </script>
+          <section>
+            <h3>Commits and parents</h3>
+            <img src="img/commits-and-parents.png">
           </section>
 
-          <section data-markdown>
-              <script type="text/template">
-                ### Branches Management
-                cf 3.3
-              </script>
-            </section>
+          <section>
+            <h3>Branch and history</h3>
+            <img src="img/branch-and-history.png">
+          </section>
+          
+          <section>
+              <h3>Creating a New Branch</h3>
+              <pre> <code>$ git branch testing</code> </pre>
+              <img src="img/head-to-master.png">
+          </section>
+
+          <section>
+            <h3>Switching Branches</h3>
+            <pre> <code>$ git checkout testing</code> </pre>
+            <img src="img/head-to-testing.png">
+          </section>
+
+          <section>
+            <pre> <code>
+              $ vim test.rb
+              $ git commit -a -m 'made a change'
+            </code>
+            </pre>
+            <img src="img/advance-testing.png">
+          </section>
+
+
+          <section>
+            <pre> <code>
+              $ git checkout master
+              $ vim test.rb
+              $ git commit -a -m 'made other changes'
+            </code>
+            </pre>
+            <img src="img/advance-master.png">
+          </section>
+
+          <section>
+            <pre><code>
+                $ git log --oneline --decorate --graph --all
+                * c2b9e (HEAD, master) made other changes
+                | * 87ab2 (testing) made a change
+                |/
+                * f30ab add feature #32 - ability to add new formats to the
+                * 34ac2 fixed bug #1328 - stack overflow under certain conditions
+                * 98ca9 initial commit of my project
+            </code></pre>
+          </section>
+
+
         </section>
 
         <section>
@@ -640,6 +688,13 @@
           
           <section data-markdown>
             <script type="text/template">
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ### Branches Management
+              cf 3.3
             </script>
           </section>
 
