@@ -684,17 +684,132 @@
             </script>
           </section>
 
+          <section>
+            <h3>working base</h3>
+            <img src="img/basic-branching-4.png">
+          </section>
           
           
           <section data-markdown>
             <script type="text/template">
+              ### Fast-forward merge
+              `git merge <branch>`
+              
+                ```
+                $ git checkout master
+                $ git merge hotfix
+                Updating f42c576..3a0874c
+                Fast-forward
+                index.html | 2 ++
+                1 file changed, 2 insertions(+)
+                ```
+            </script>
+          </section>
+
+          <section>
+            <h3>Fast-forward</h3>
+            <img src="img/basic-branching-5.png">
+          </section>
+
+          <section>
+            <pre><code>
+                $ git branch -d hotfix
+                Deleted branch hotfix (3a0874c).
+
+                $ git checkout iss53
+                Switched to branch "iss53"
+                $ vim index.html
+                $ git commit -a -m 'finished the new footer [issue 53]'
+                [iss53 ad82d7a] finished the new footer [issue 53]
+                1 file changed, 1 insertion(+)
+            </code></pre>
+            <img src="img/basic-branching-6.png" alt="">
+          </section>
+
+          <section>
+            <h3>Basic Merging</h3>
+            <pre><code>
+                $ git checkout master
+                Switched to branch 'master'
+                $ git merge iss53
+                Merge made by the 'recursive' strategy.
+                index.html |    1 +
+                1 file changed, 1 insertion(+)
+            </code></pre>
+            <img src="img/basic-merging-1.png" alt="">
+            <p> Git does a simple three-way merge, using the two snapshots pointed to by the branch tips and the common ancestor of the two.</p>
+          </section>
+
+          <section>
+              Git creates a new snapshot that results from this three-way merge and automatically creates a new commit that points to it. This is referred to as a merge commit
+              <img src="img/basic-merging-2.png">
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ### Merge Conflicts
+              ```
+              $ git merge iss53
+              Auto-merging index.html
+              CONFLICT (content): Merge conflict in index.html
+              Automatic merge failed; fix conflicts and then commit the result.
+              ```
+
+              ```
+              $ git status
+              On branch master
+              You have unmerged paths.
+                (fix conflicts and run "git commit")
+
+              Unmerged paths:
+                (use "git add <file>..." to mark resolution)
+
+                  both modified:      index.html
+
+              no changes added to commit (use "git add" and/or "git commit -a")
+              ```
             </script>
           </section>
 
           <section data-markdown>
             <script type="text/template">
-              ### Branches Management
-              cf 3.3
+              resolve conflict
+              ```
+              <<<<<<< HEAD:index.html
+              <div id="footer">contact : email.support@github.com</div>
+              =======
+              <div id="footer">
+               please contact us at support@github.com
+              </div>
+              >>>>>>> iss53:index.html 
+              ```
+              ```
+              <div id="footer">
+                please contact us at email.support@github.com
+              </div>
+              ```
+              ```
+              $ git add .
+              $ git status
+              On branch master
+              All conflicts fixed but you are still merging.
+                (use "git commit" to conclude merge)
+
+              Changes to be committed:
+
+                  modified:   index.html
+
+              $ git commit
+
+              Merge branch 'iss53'
+
+              Conflicts:
+                  index.html
+              #
+              # It looks like you may be committing a merge.
+              # If this is not correct, please remove the file
+              # ...
+              ```
             </script>
           </section>
 
