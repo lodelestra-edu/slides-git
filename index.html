@@ -198,7 +198,9 @@
               echo "checking status" > README && git status
               # result ?  
               ```
-              Git won’t start including it in your commit snapshots until you explicitly tell it to do so. It does this so you don’t accidentally begin including generated binary files or other files that you did not mean to include.
+              <p class="fragment">
+                Git won’t start including it in your commit snapshots until you explicitly tell it to do so. It does this so you don’t accidentally begin including generated binary files or other files that you did not mean to include.
+              </p>
             </script>
           </section>         
           
@@ -208,8 +210,15 @@
               ### Tracking New Files
               **`git add <file or directory>`**
               ```
+              # git init
               git add README
+              git status
+              # result ?
               ```
+              <p class="fragment">
+                `Changes to be committed:` tells you it's staged.   
+                If you commit at this point, the version of the file at the time you ran git add is what will be in the historical snapshot. 
+              </p>
             </script>
           </section>         
           
@@ -217,6 +226,22 @@
           <section data-markdown>
             <script type="text/template">
               ### Staging Modified Files
+              If you change a file that was already tracked.
+              ```
+              On branch master
+              Changes not staged for commit:
+                (use "git add <file>..." to update what will be committed)
+                (use "git checkout -- <file>..." to discard changes in working directory)
+                  modified:   README.md
+              ```
+              The tracked file has been modified in the working directory but not yet staged  
+              To stage it, you run the git add command. git add is a multipurpose command  
+              ```
+              On branch master
+              Changes to be committed:
+              (use "git reset HEAD <file>..." to unstage)
+                  modified:   README.md
+              ```
             </script>
           </section>
           
@@ -225,6 +250,14 @@
           <section data-markdown>
             <script type="text/template">
               ### Ignoring Files
+              Example log files, build files.
+
+              Add a `.gitignore` file
+
+              ```
+              *.logs
+              node_modules/
+              ```
             </script>
           </section>
           
@@ -233,6 +266,14 @@
           <section data-markdown>
             <script type="text/template">
               ### Viewing Your Staged and Unstaged Changes
+              `git diff`
+              ```
+              # see what you've changed but not yet staged
+              $ git diff
+              # see what you've staged that will go into your next commit
+              $ git diff --staged
+              $ git diff --cached
+              ```
             </script>
           </section>
           
@@ -241,31 +282,29 @@
           <section data-markdown>
             <script type="text/template">
               ### Committing Your Changes
+              Commit changes that are in staging area  
+              `git commit`  
+              <br/>
+              Commit changes with message  
+              `git commit -m "Commit message"`  
+              <br/>
+              Skipping the Staging Area  
+              `git commit -a -m 'added new options'`
+            </script>
+          </section>
 
-            </script>
-          </section>
-          
-          
-          
-          <section data-markdown>
-            <script type="text/template">
-              ### Skipping the Staging Area
-            </script>
-          </section>
-          
-          
+
           
           <section data-markdown>
             <script type="text/template">
               ### Removing Files
-            </script>
-          </section>
-          
-          
-          
-          <section data-markdown>
-            <script type="text/template">
+              `$ git rm filename` then `$ git commit`  
+              <br/>
+              keep the file in your working tree but remove it from your staging area.  
+              `git rm --cached filename`
               ### Moving Files
+              `$ git mv file_from file_to`
+              `$ mv file_from file_to && git rm file_from && git add file_to`
             </script>
           </section>
           
@@ -274,9 +313,51 @@
           <section data-markdown>
             <script type="text/template">
               ## Viewing the Commit History
+              `$ git log`
+              ```
+              $ git log
+              commit ca82a6dff817ec66f44342007202690a93763949
+              Author: Scott Chacon <schacon@gee-mail.com>
+              Date:   Mon Mar 17 21:52:11 2008 -0700
+
+                  changed the version number
+
+              commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+              Author: Scott Chacon <schacon@gee-mail.com>
+              Date:   Sat Mar 15 16:40:33 2008 -0700
+
+                  removed unnecessary test
+
+              commit a11bef06a3f659402fe7563abf99ad00de2209e6
+              Author: Scott Chacon <schacon@gee-mail.com>
+              Date:   Sat Mar 15 10:31:28 2008 -0700
+
+                  first commit
+              ```
+              `-p` or `--patch` shows the difference introduced in each commit.
             </script>
           </section>
           
+
+
+          <section data-markdown>
+            <script type="text/template">
+              ```
+              $ git log --pretty=format:"%h %s" --graph
+              * 2d3acf9 ignore errors from SIGCHLD on trap
+              *  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
+              |\
+              | * 420eac9 Added a method for getting the current branch.
+              * | 30e367c timeout code and tests
+              * | 5a09431 add timeout protection to grit
+              * | e1193f8 support for heads with slashes in them
+              |/
+              * d6016bc require time for xmlschema
+              *  11d191e Merge branch 'defunkt' into local
+              ```
+            </script>
+          </section>
+
           
           
           <section data-markdown>
@@ -290,6 +371,14 @@
           <section data-markdown>
             <script type="text/template">
               ### Edit the last commit
+              `$ git commit --amend`  
+              you commit too early and possibly forget to add some files, or you mess up your commit message.  
+              If you want to redo that commit, make the additional changes you forgot, stage them, and commit again using the `--amend` option:
+              ```
+              $ git commit -m 'initial commit'
+              $ git add forgotten_file
+              $ git commit --amend
+              ```
             </script>
           </section>
 
@@ -298,6 +387,23 @@
           <section data-markdown>
             <script type="text/template">
               ### Unstaging a Staged File
+              ```
+              $ git add *
+              $ git status
+              On branch master
+              Changes to be committed:
+                (use "git reset HEAD <file>..." to unstage)
+
+                  renamed:    README.md -> README
+                  modified:   CONTRIBUTING.md
+              ```
+
+              unstage the CONTRIBUTING.md file
+              ```
+              $ git reset HEAD CONTRIBUTING.md
+              Unstaged changes after reset:
+              M	CONTRIBUTING.md
+              ```
             </script>
           </section>
 
@@ -306,6 +412,23 @@
           <section data-markdown>
             <script type="text/template">
               ### Unmodifying a Modified File
+              ```
+              Changes not staged for commit:
+              (use "git add <file>..." to update what will be committed)
+              (use "git checkout -- <file>..." to discard changes in working directory)
+
+                modified:   CONTRIBUTING.md
+              ```
+              Revert a file back to what it looked like when you last committed.
+              ```
+              $ git checkout -- CONTRIBUTING.md
+              $ git status
+              On branch master
+              Changes to be committed:
+                (use "git reset HEAD <file>..." to unstage)
+              
+                  renamed:    README.md -> README
+              ```
             </script>
           </section>
         </section>
