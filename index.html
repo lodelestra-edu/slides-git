@@ -441,10 +441,37 @@
           </section>
 
           
+
+          <section data-markdown>
+            <script type="text/template">
+              Remote repositories are versions of your project that are hosted on the Internet or network somewhere.  
+              <br/>
+              Collaborating with others involves managing these remote repositories and pushing and pulling data to and from them when you need to share work
+            </script>
+          </section>
+
+
           
           <section data-markdown>
             <script type="text/template">
               ### Showing Your Remotes
+              `git remote`  
+              ```
+              $ git clone https://github.com/schacon/ticgit
+              Cloning into 'ticgit'...
+              remote: Reusing existing pack: 1857, done.
+              remote: Total 1857 (delta 0), reused 0 (delta 0)
+              Receiving objects: 100% (1857/1857), 374.35 KiB | 268.00 KiB/s, done.
+              Resolving deltas: 100% (772/772), done.
+              Checking connectivity... done.
+              $ cd ticgit
+              $ git remote
+              origin
+
+              $ git remote -v
+              origin	https://github.com/schacon/ticgit (fetch)
+              origin	https://github.com/schacon/ticgit (push)
+              ```
             </script>
           </section>
 
@@ -453,6 +480,27 @@
           <section data-markdown>
             <script type="text/template">
               ### Adding Remote Repositories
+              `git remote add <shortname> <url>`
+              ```
+              $ git remote
+              origin
+              $ git remote add pb https://github.com/paulboone/ticgit
+              $ git remote -v
+              origin	https://github.com/schacon/ticgit (fetch)
+              origin	https://github.com/schacon/ticgit (push)
+              pb	https://github.com/paulboone/ticgit (fetch)
+              pb	https://github.com/paulboone/ticgit (push)
+
+
+              $ git fetch pb
+              remote: Counting objects: 43, done.
+              remote: Compressing objects: 100% (36/36), done.
+              remote: Total 43 (delta 10), reused 31 (delta 5)
+              Unpacking objects: 100% (43/43), done.
+              From https://github.com/paulboone/ticgit
+              * [new branch]      master     -> pb/master
+              * [new branch]      ticgit     -> pb/ticgit
+              ```
             </script>
           </section>
 
@@ -461,6 +509,15 @@
           <section data-markdown>
             <script type="text/template">
               ### Fetching and Pulling from Your Remotes
+              Pulls down all the data from that remote project that you don’t have yet
+              `$ git fetch <remote>`
+                ```
+                git fetch origin
+                ```
+                `git fetch` command only downloads the data to your local repository.  
+                It doesn’t automatically merge it with any of your work or modify what you’re currently working on. You have to merge it manually into your work when you’re ready.  
+                <br/>
+                Use the `git pull` command to automatically fetch and then merge.
             </script>
           </section>
 
@@ -469,6 +526,11 @@
           <section data-markdown>
             <script type="text/template">
               ### Pushing to Your Remotes
+              `git push <remote> <branch>`  
+              push your master branch to your origin server
+              ```
+              $ git push origin master
+              ```
             </script>
           </section>
 
@@ -477,6 +539,21 @@
           <section data-markdown>
             <script type="text/template">
               ### Inspecting a Remote
+              `git remote show <remote>`
+              ```
+              $ git remote show origin
+              * remote origin
+                Fetch URL: https://github.com/schacon/ticgit
+                Push  URL: https://github.com/schacon/ticgit
+                HEAD branch: master
+                Remote branches:
+                  master                               tracked
+                  dev-branch                           tracked
+                Local branch configured for 'git pull':
+                  master merges with remote master
+                Local ref configured for 'git push':
+                  master pushes to master (up to date)
+              ```
             </script>
           </section>
 
@@ -485,6 +562,19 @@
           <section data-markdown>
             <script type="text/template">
               ### Renaming and Removing Remotes
+              `git remote rename`
+              ```
+              $ git remote rename pb paul
+              $ git remote
+              origin
+              paul
+              ```
+              `git remote remove`
+              ```
+              $ git remote remove paul
+              $ git remote
+              origin
+              ```
             </script>
           </section>
         </section>
