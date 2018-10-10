@@ -821,18 +821,86 @@
               # 6. Remote Branches
             </script>
           </section>
-
           
           
           <section data-markdown>
             <script type="text/template">
+             `git remote show [remote]`
+             Show you remote references and some other stuff.  
+
+             Remote-tracking branches are references to the state of remote branches. They’re local references that you can’t move
+
+             Remote-tracking branches take the form `<remote>/<branch>`
             </script>
           </section>
+          
+          <section>
+            <img src="img/remote-branches-1.png" alt="">
+            <br>
+            Server and local repositories after cloning
+          </section>
 
+          <section>
+            <p>someone else pushes to <code>git.ourcompany.com</code> and updates its master branch, then your histories move forward differently.</p> 
+            <img src="img/remote-branches-2.png" alt="">
+            <br>
+            Local and remote work can diverge
+          </section>
+
+          <section>
+            <code>git fetch origin</code>
+            <br>
+            This command will fetch data and update your local database.
+            <img src="img/remote-branches-3.png" alt="">
+          </section>
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Pulling
+              `git fetch` will not modify your working directory. It will get the data and let you merge it.  
+              <br>
+              `git pull` will essentially do a `git fetch` followed by a `git merge`
+            </script>
+          </section>
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Pushing
+              To share a branch  
+              `git push <remote> <branch>`  
+              <br>
+              To share a branch with different name  
+              `git push <remote> <localbranch>:<newname>`
+            </script>
+          </section>
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Tracking Branches
+              Tracking branches are local branches that have a direct relationship to a remote branch.  
+              `git checkout -b <branch> <remote>/<branch>` or
+              `git checkout --track origin/serverfix` or
+              `git checkout serverfix` (if matching name with remote) or
+              `git checkout -b sf origin/serverfix`
+              <br><br>
+              If you have a local branch: `git branch -u origin/serverfix` (--set-upstream)
+            </script>
+          </section>
+          
+          
+          <section data-markdown>
+            <script type="text/template">
+              ### Deleting Remote Branches
+              `git push origin --delete <branchname>`
+            </script>
+          </section>
           
         </section>
 
         <section>
+
           <section data-markdown>
             <script type="text/template">
               # 7. Branching and Rebasing
