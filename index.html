@@ -401,17 +401,13 @@
               $ git status
               On branch master
               Changes to be committed:
-                (use "git reset HEAD <file>..." to unstage)
-
-                  renamed:    README.md -> README
-                  modified:   CONTRIBUTING.md
+                (use "git restore --staged <file>..." to unstage)
+                      modified:   README
               ```
 
-              unstage the CONTRIBUTING.md file
+              unstage the README file
               ```
-              $ git reset HEAD CONTRIBUTING.md
-              Unstaged changes after reset:
-              M	CONTRIBUTING.md
+              $ git restore --staged README
               ```
             </script>
           </section>
@@ -424,13 +420,12 @@
               ```
               Changes not staged for commit:
               (use "git add <file>..." to update what will be committed)
-              (use "git checkout -- <file>..." to discard changes in working directory)
-
-                modified:   CONTRIBUTING.md
+              (use "git restore <file>..." to discard changes in working directory)
+                    modified:   README
               ```
               Revert a file back to what it looked like when you last committed.
               ```
-              $ git checkout -- CONTRIBUTING.md
+              $ git restore README
               $ git status
               On branch master
               Changes to be committed:
@@ -638,7 +633,11 @@
 
           <section>
             <h3>Switching Branches</h3>
-            <pre> <code>$ git checkout testing</code> </pre>
+            <pre> <code>
+            $ git checkout testing
+            $ # or
+            $ git switch testing
+            </code> </pre>
             <img src="img/head-to-testing.png">
           </section>
 
